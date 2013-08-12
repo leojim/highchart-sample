@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "Reload Charts";
+}
+<div id="lineChartsPage">
+    <div id="lineCharts">
+    </div>
+</div>
+<script type="text/javascript">
+
+    //    var titleText;
+    //    var subTitleText;
+    //    var xAxisCategories;
+    //    var yAxisTitleText;
+    //    var tooltipValueSuffix;
+    //    var series = [];
+
+    function GenerateLineCharts() {
+
+        $('#lineCharts').highcharts({
+            title: {
+                text: titleText, //'Monthly Average Temperature',
+                x: -20 //center
+            },
+            subtitle: {
+                text: subTitleText, //'Source: WorldClimate.com',
+                x: -20
+            },
+            xAxis: {
+                categories: xAxisCategories //['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                //'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: yAxisTitleText //'Temperature (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: tooltipValueSuffix //'°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: series
+            //            series: [{
+            //                name: 'Tokyo',
+            //                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            //            }, {
+            //                name: 'New York',
+            //                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            //            }, {
+            //                name: 'Berlin',
+            //                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            //            }, {
+            //                name: 'London',
+            //                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            //            }]
+        });
+
+    }
+
+    function GenerateLineCharts(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series) {
+
+        $('#lineCharts').highcharts({
+            title: {
+                text: titleText, //'Monthly Average Temperature',
+                x: -20 //center
+            },
+            subtitle: {
+                text: subTitleText, //'Source: WorldClimate.com',
+                x: -20
+            },
+            xAxis: {
+                categories: xAxisCategories //['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                //'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: yAxisTitleText //'Temperature (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: tooltipValueSuffix //'°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: series
+            //            series: [{
+            //                name: 'Tokyo',
+            //                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            //            }, {
+            //                name: 'New York',
+            //                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            //            }, {
+            //                name: 'Berlin',
+            //                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            //            }, {
+            //                name: 'London',
+            //                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            //            }]
+        });
+
+    }
+
+    $(document).ready(function () {
+
+        //        var titleText = 'Monthly Average Temperature';
+        //        var subTitleText = 'Source: WorldClimate.com';
+        //        var xAxisCategories = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        //                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+        //        var yAxisTitleText = 'Temperature (°C)';
+        //        var tooltipValueSuffix = '°C';
+
+        //        //        var serie = {
+        //        //            name: {},
+        //        //            data: []
+        //        //        };
+
+        //        var series = [];
+
+        //        for (var i = 0; i < 5; i++) {
+
+        //            series.push({
+        //                name: 'Tokyo',
+        //                data: [i, 6.9, 9.5, 14.5, 18.2, i, 25.2, 26.5, 23.3, 18.3, 13.9, i]
+        //            })
+        //        }
+
+
+
+        //        $.get('/Charts/ServerLineChartsData', function (data) {
+        //            console.log(data);
+        //        });
+
+        //        $.ajax({
+        //            url: "/Charts/ServerLineChartsData",
+        //            cache: false,
+        //            success: function (data) {
+        //                console.log(data);
+        //            },
+        //            error: function (objAjaxRequest, strError) {
+        //                var respText = objAjaxRequest.responseText;
+        //                console.log(respText);
+        //            }
+        //        });
+
+        $.ajax({
+            url: "/Charts/ServerLineChartsData",
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //console.log(data);
+                //alert(data);
+
+                var titleText = data.TitleText;
+                var subTitleText = data.SubTitleText;
+                var xAxisCategories = data.XAxisCategories;
+                var yAxisTitleText = data.YAxisTitleText;
+                var tooltipValueSuffix = data.TooltipValueSuffix;
+                var series = [];
+
+                for (var index in data.Series) {
+                    series.push({
+                        name: data.Series[index].SeriesName,
+                        data: data.Series[index].SeriesDatas
+                    })
+                    //console.log(data.Series[serie].SeriesName);
+                    //console.log(data.Series[serie].SeriesDatas);
+                }
+
+                //GenerateLineCharts();
+                GenerateLineCharts(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series);
+
+            },
+            error: function (objAjaxRequest, strError) {
+                var respText = objAjaxRequest.responseText;
+                console.log(respText);
+                //alert(respText);
+            }
+
+        });
+
+
+    });
+
+</script>

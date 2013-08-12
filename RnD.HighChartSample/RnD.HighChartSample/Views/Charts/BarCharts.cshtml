@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "BarCharts";
+    ViewBag.Title = "Bar Charts";
 }
 <div id="barChartsPage">
     <div id="barCharts">
@@ -11,10 +11,10 @@
 
         $('#barCharts').highcharts({
             chart: {
-                type: 'bar'
+                type: 'column'
             },
             title: {
-                text: 'Stacked bar chart'
+                text: 'Stacked column chart'
             },
             xAxis: {
                 categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
@@ -23,15 +23,40 @@
                 min: 0,
                 title: {
                     text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
                 }
             },
             legend: {
-                backgroundColor: '#FFFFFF',
-                reversed: true
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
             },
             plotOptions: {
-                series: {
-                    stacking: 'normal'
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
                 }
             },
             series: [{

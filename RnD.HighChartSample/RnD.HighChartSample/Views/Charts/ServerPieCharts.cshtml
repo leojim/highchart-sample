@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "Server Pie Charts";
+}
+<div id="pieChartsPage">
+    <div id="pieCharts">
+    </div>
+</div>
+<script type="text/javascript">
+
+    //    var titleText;
+    //    var seriesDatas = [];
+
+    function GeneratePieCharts() {
+
+        $('#pieCharts').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: titleText //'Browser market shares at a specific website, 2010'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: seriesDatas
+                //                data: [
+                //                            ['Firefox', 45.0],
+                //                            ['IE', 26.8],
+                //                            {
+                //                                name: 'Chrome',
+                //                                y: 12.8,
+                //                                sliced: true,
+                //                                selected: true
+                //                            },
+                //                            ['Safari', 8.5],
+                //                            ['Opera', 6.2],
+                //                            ['Others', 0.7]
+                //                        ]
+            }]
+
+        });
+
+    }
+
+    function GeneratePieCharts(titleText, seriesDatas) {
+
+        $('#pieCharts').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: titleText //'Browser market shares at a specific website, 2010'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: seriesDatas
+                //                data: [
+                //                            ['Firefox', 45.0],
+                //                            ['IE', 26.8],
+                //                            {
+                //                                name: 'Chrome',
+                //                                y: 12.8,
+                //                                sliced: true,
+                //                                selected: true
+                //                            },
+                //                            ['Safari', 8.5],
+                //                            ['Opera', 6.2],
+                //                            ['Others', 0.7]
+                //                        ]
+            }]
+
+        });
+
+    }
+
+
+    $(document).ready(function () {
+
+        //        $('#pieCharts').highcharts({
+        //            chart: {
+        //                plotBackgroundColor: null,
+        //                plotBorderWidth: null,
+        //                plotShadow: false
+        //            },
+        //            title: {
+        //                text: 'Browser market shares at a specific website, 2010'
+        //            },
+        //            tooltip: {
+        //                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        //            },
+        //            plotOptions: {
+        //                pie: {
+        //                    allowPointSelect: true,
+        //                    cursor: 'pointer',
+        //                    dataLabels: {
+        //                        enabled: true,
+        //                        color: '#000000',
+        //                        connectorColor: '#000000',
+        //                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        //                    }
+        //                }
+        //            },
+        //            series: [{
+        //                type: 'pie',
+        //                name: 'Browser share',
+        //                data: [
+        //                ['Firefox', 45.0],
+        //                ['IE', 26.8],
+        //                {
+        //                    name: 'Chrome',
+        //                    y: 12.8,
+        //                    sliced: true,
+        //                    selected: true
+        //                },
+        //                ['Safari', 8.5],
+        //                ['Opera', 6.2],
+        //                ['Others', 0.7]
+        //            ]
+        //            }]
+
+        //        });
+
+        $.ajax({
+            url: "/Charts/ServerPieChartsData",
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //console.log(data);
+                //alert(data);
+
+                var titleText = data.TitleText;
+                var seriesDatas = [];
+
+                for (var index in data.SeriesDatas) {
+                    seriesDatas.push({
+                        name: data.SeriesDatas[index].DataName,
+                        y: data.SeriesDatas[index].DataY
+                    })
+                    //console.log(data.SeriesDatas[index].DataName);
+                    //console.log(data.SeriesDatas[index].DataY);
+                }
+
+                //GeneratePieCharts();
+                GeneratePieCharts(titleText, seriesDatas);
+
+            },
+            error: function (objAjaxRequest, strError) {
+                var respText = objAjaxRequest.responseText;
+                console.log(respText);
+                //alert(respText);
+            }
+
+        });
+
+    });
+
+</script>

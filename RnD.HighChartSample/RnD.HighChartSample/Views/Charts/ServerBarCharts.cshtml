@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = "Server Bar Charts";
+}
+<div id="barChartsPage">
+    <div id="barCharts">
+    </div>
+    <br />
+    <div id="barHorizontalCharts">
+    </div>
+</div>
+<script type="text/javascript">
+
+    //    var titleText;
+    //    var xAxisCategories;
+    //    var yAxisTitleText;
+    //    var series = [];
+
+    function GenerateBarCharts() {
+
+        $('#barCharts').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: titleText //'Stacked column chart'
+            },
+            xAxis: {
+                categories: xAxisCategories //['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yAxisTitleText //'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: series
+            //            series: [{
+            //                name: 'John',
+            //                data: [5, 3, 4, 7, 2]
+            //            }, {
+            //                name: 'Jane',
+            //                data: [2, 2, 3, 2, 1]
+            //            }, {
+            //                name: 'Joe',
+            //                data: [3, 4, 4, 2, 5]
+            //            }]
+        });
+
+    }
+
+    function GenerateBarCharts(titleText, xAxisCategories, yAxisTitleText, series) {
+
+        $('#barCharts').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: titleText //'Stacked column chart'
+            },
+            xAxis: {
+                categories: xAxisCategories //['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yAxisTitleText //'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: series
+            //            series: [{
+            //                name: 'John',
+            //                data: [5, 3, 4, 7, 2]
+            //            }, {
+            //                name: 'Jane',
+            //                data: [2, 2, 3, 2, 1]
+            //            }, {
+            //                name: 'Joe',
+            //                data: [3, 4, 4, 2, 5]
+            //            }]
+        });
+
+    }
+
+    function GenerateHorizontalBarCharts(titleText, xAxisCategories, yAxisTitleText, series) {
+
+        $('#barHorizontalCharts').highcharts({
+
+            chart: {
+
+                type: 'bar'
+
+            },
+
+            title: {
+
+                text: titleText //'Stacked bar chart'
+
+            },
+
+            xAxis: {
+
+                categories: xAxisCategories //['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+
+            },
+
+            yAxis: {
+
+                min: 0,
+
+                title: {
+
+                    text: yAxisTitleText //'Total fruit consumption'
+
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+
+            },
+
+            legend: {
+
+                align: 'right',
+                x: -100,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+
+            },
+
+            tooltip: {
+
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+                }
+
+            },
+
+            plotOptions: {
+
+                series: {
+
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+
+
+                }
+
+            },
+            series: series
+            //            series: [{
+            //                name: 'John',
+            //                data: [5, 3, 4, 7, 2]
+            //            }, {
+            //                name: 'Jane',
+            //                data: [2, 2, 3, 2, 1]
+            //            }, {
+            //                name: 'Joe',
+            //                data: [3, 4, 4, 2, 5]
+            //            }]
+
+
+
+        });
+
+    }
+
+
+    $(document).ready(function () {
+
+        //        $('#barCharts').highcharts({
+        //            chart: {
+        //                type: 'column'
+        //            },
+        //            title: {
+        //                text: 'Stacked column chart'
+        //            },
+        //            xAxis: {
+        //                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        //            },
+        //            yAxis: {
+        //                min: 0,
+        //                title: {
+        //                    text: 'Total fruit consumption'
+        //                },
+        //                stackLabels: {
+        //                    enabled: true,
+        //                    style: {
+        //                        fontWeight: 'bold',
+        //                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        //                    }
+        //                }
+        //            },
+        //            legend: {
+        //                align: 'right',
+        //                x: -70,
+        //                verticalAlign: 'top',
+        //                y: 20,
+        //                floating: true,
+        //                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+        //                borderColor: '#CCC',
+        //                borderWidth: 1,
+        //                shadow: false
+        //            },
+        //            tooltip: {
+        //                formatter: function () {
+        //                    return '<b>' + this.x + '</b><br/>' +
+        //                        this.series.name + ': ' + this.y + '<br/>' +
+        //                        'Total: ' + this.point.stackTotal;
+        //                }
+        //            },
+        //            plotOptions: {
+        //                column: {
+        //                    stacking: 'normal',
+        //                    dataLabels: {
+        //                        enabled: true,
+        //                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+        //                    }
+        //                }
+        //            },
+        //            series: [{
+        //                name: 'John',
+        //                data: [5, 3, 4, 7, 2]
+        //            }, {
+        //                name: 'Jane',
+        //                data: [2, 2, 3, 2, 1]
+        //            }, {
+        //                name: 'Joe',
+        //                data: [3, 4, 4, 2, 5]
+        //            }]
+        //        });
+
+        $.ajax({
+            url: "/Charts/ServerBarChartsData",
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //console.log(data);
+                //alert(data);
+
+                var titleText = data.TitleText;
+                var xAxisCategories = data.XAxisCategories;
+                var yAxisTitleText = data.YAxisTitleText;
+                var series = [];
+
+                for (var index in data.Series) {
+                    series.push({
+                        name: data.Series[index].SeriesName,
+                        data: data.Series[index].SeriesDatas
+                    })
+                    //console.log(data.Series[serie].SeriesName);
+                    //console.log(data.Series[serie].SeriesDatas);
+                }
+
+                //GenerateBarCharts();
+                GenerateBarCharts(titleText, xAxisCategories, yAxisTitleText, series);
+
+                GenerateHorizontalBarCharts(titleText, xAxisCategories, yAxisTitleText, series);
+
+            },
+            error: function (objAjaxRequest, strError) {
+                var respText = objAjaxRequest.responseText;
+                console.log(respText);
+                //alert(respText);
+            }
+
+        });
+
+    });
+
+</script>
