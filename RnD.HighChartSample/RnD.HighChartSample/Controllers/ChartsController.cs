@@ -171,5 +171,16 @@ namespace RnD.HighChartSample.Controllers
             return View();
         }
 
+        //LoadCharts
+        public ActionResult LoadCharts()
+        {
+            return View();
+        }
+
+        //UpdateCharts
+        public ActionResult UpdateCharts()
+        {
+            return View();
+        }
     }
 }

@@ -1,15 +1,26 @@
 ﻿@{
-    ViewBag.Title = "Bar Charts";
+    ViewBag.Title = "Column/Bar Chart";
 }
-<div id="barChartsPage">
-    <div id="barCharts">
+<div id="columnChartPage">
+    <div>
+        <h2>
+            Column Chart:</h2>
+    </div>
+    <div id="columnChart">
+    </div>
+    <hr />
+    <div>
+        <h2>
+            Bar Chart:</h2>
+    </div>
+    <div id="barChart">
     </div>
 </div>
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        $('#barCharts').highcharts({
+        $('#columnChart').highcharts({
             chart: {
                 type: 'column'
             },
@@ -69,6 +80,98 @@
                 name: 'Joe',
                 data: [3, 4, 4, 2, 5]
             }]
+        });
+
+        $('#barChart').highcharts({
+
+            chart: {
+
+                type: 'bar'
+
+            },
+
+            title: {
+
+                text: 'Stacked bar chart'
+
+            },
+
+            xAxis: {
+
+                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+
+            },
+
+            yAxis: {
+
+                min: 0,
+
+                title: {
+
+                    text: 'Total fruit consumption'
+
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+
+            },
+
+            legend: {
+
+                align: 'right',
+                x: -100,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+
+            },
+
+            tooltip: {
+
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + '<br/>' +
+                    'Total: ' + this.point.stackTotal;
+                }
+
+            },
+
+            plotOptions: {
+
+                series: {
+
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+
+
+                }
+
+            },
+            series: [{
+                name: 'John',
+                data: [5, 3, 4, 7, 2]
+            }, {
+                name: 'Jane',
+                data: [2, 2, 3, 2, 1]
+            }, {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5]
+            }]
+
+
+
         });
 
     });

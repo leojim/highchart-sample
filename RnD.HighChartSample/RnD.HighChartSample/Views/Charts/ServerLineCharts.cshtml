@@ -1,8 +1,8 @@
 ﻿@{
     ViewBag.Title = "Server Line Charts";
 }
-<div id="lineChartsPage">
-    <div id="lineCharts">
+<div id="lineChartPage">
+    <div id="lineChart">
     </div>
 </div>
 <script type="text/javascript">
@@ -14,9 +14,9 @@
     //    var tooltipValueSuffix;
     //    var series = [];
 
-    function GenerateLineCharts() {
+    function GeneratelineChart() {
 
-        $('#lineCharts').highcharts({
+        $('#lineChart').highcharts({
             title: {
                 text: titleText, //'Monthly Average Temperature',
                 x: -20 //center
@@ -66,9 +66,9 @@
 
     }
 
-    function GenerateLineCharts(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series) {
+    function GeneratelineChart(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series) {
 
-        $('#lineCharts').highcharts({
+        $('#lineChart').highcharts({
             title: {
                 text: titleText, //'Monthly Average Temperature',
                 x: -20 //center
@@ -185,8 +185,8 @@
                     //console.log(data.Series[serie].SeriesDatas);
                 }
 
-                //GenerateLineCharts();
-                GenerateLineCharts(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series);
+                //GeneratelineChart();
+                GeneratelineChart(titleText, subTitleText, xAxisCategories, yAxisTitleText, tooltipValueSuffix, series);
 
             },
             error: function (objAjaxRequest, strError) {

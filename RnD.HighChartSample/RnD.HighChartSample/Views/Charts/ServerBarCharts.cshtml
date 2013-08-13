@@ -1,11 +1,19 @@
 ﻿@{
-    ViewBag.Title = "Server Bar Charts";
+    ViewBag.Title = "Server Column/Bar Charts";
 }
-<div id="barChartsPage">
-    <div id="barCharts">
+<div id="columnChartPage">
+    <div>
+        <h2>
+            Column Chart:</h2>
     </div>
-    <br />
-    <div id="barHorizontalCharts">
+    <div id="columnChart">
+    </div>
+    <hr />
+    <div>
+        <h2>
+            Bar Chart:</h2>
+    </div>
+    <div id="barChart">
     </div>
 </div>
 <script type="text/javascript">
@@ -15,9 +23,9 @@
     //    var yAxisTitleText;
     //    var series = [];
 
-    function GenerateBarCharts() {
+    function GenerateColumnChart() {
 
-        $('#barCharts').highcharts({
+        $('#columnChart').highcharts({
             chart: {
                 type: 'column'
             },
@@ -82,9 +90,9 @@
 
     }
 
-    function GenerateBarCharts(titleText, xAxisCategories, yAxisTitleText, series) {
+    function GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series) {
 
-        $('#barCharts').highcharts({
+        $('#columnChart').highcharts({
             chart: {
                 type: 'column'
             },
@@ -149,9 +157,9 @@
 
     }
 
-    function GenerateHorizontalBarCharts(titleText, xAxisCategories, yAxisTitleText, series) {
+    function GenerateBarChart(titleText, xAxisCategories, yAxisTitleText, series) {
 
-        $('#barHorizontalCharts').highcharts({
+        $('#barChart').highcharts({
 
             chart: {
 
@@ -249,7 +257,7 @@
 
     $(document).ready(function () {
 
-        //        $('#barCharts').highcharts({
+        //        $('#columnChart').highcharts({
         //            chart: {
         //                type: 'column'
         //            },
@@ -334,10 +342,10 @@
                     //console.log(data.Series[serie].SeriesDatas);
                 }
 
-                //GenerateBarCharts();
-                GenerateBarCharts(titleText, xAxisCategories, yAxisTitleText, series);
+                //GenerateColumnChart();
+                GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series);
 
-                GenerateHorizontalBarCharts(titleText, xAxisCategories, yAxisTitleText, series);
+                GenerateBarChart(titleText, xAxisCategories, yAxisTitleText, series);
 
             },
             error: function (objAjaxRequest, strError) {

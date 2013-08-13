@@ -1,8 +1,8 @@
 ﻿@{
     ViewBag.Title = "Server Pie Charts";
 }
-<div id="pieChartsPage">
-    <div id="pieCharts">
+<div id="pieChartPage">
+    <div id="pieChart">
     </div>
 </div>
 <script type="text/javascript">
@@ -10,9 +10,9 @@
     //    var titleText;
     //    var seriesDatas = [];
 
-    function GeneratePieCharts() {
+    function GeneratepieChart() {
 
-        $('#pieCharts').highcharts({
+        $('#pieChart').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -59,9 +59,9 @@
 
     }
 
-    function GeneratePieCharts(titleText, seriesDatas) {
+    function GeneratepieChart(titleText, seriesDatas) {
 
-        $('#pieCharts').highcharts({
+        $('#pieChart').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -111,7 +111,7 @@
 
     $(document).ready(function () {
 
-        //        $('#pieCharts').highcharts({
+        //        $('#pieChart').highcharts({
         //            chart: {
         //                plotBackgroundColor: null,
         //                plotBorderWidth: null,
@@ -176,8 +176,8 @@
                     //console.log(data.SeriesDatas[index].DataY);
                 }
 
-                //GeneratePieCharts();
-                GeneratePieCharts(titleText, seriesDatas);
+                //GeneratepieChart();
+                GeneratepieChart(titleText, seriesDatas);
 
             },
             error: function (objAjaxRequest, strError) {

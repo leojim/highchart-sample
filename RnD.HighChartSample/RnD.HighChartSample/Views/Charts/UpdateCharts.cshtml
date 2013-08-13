@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Update Charts";
+}
+<div id="barChartsPage">
+    <div id="columnChartUpdateZone">
+        <fieldset>
+            <legend>Update Chart:</legend>
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+                <label>
+                    Category:</label>
+                <select>
+                    <option value="0">Funding Agency</option>
+                    <option value="1">Funding Source</option>
+                    <option value="2">Funding Type</option>
+                    <option value="3">Fiscal Year</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label>
+                    Values:</label>
+                <input type="checkbox" checked="checked" name="cbCommitted" value="0" /><label>Committed</label><input
+                    type="checkbox" name="cbDisbursed" value="1" /><label>Disbursed</label><input type="checkbox"
+                        name="cbExpended" value="2" /><label>Expended</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label>
+                    Series:</label>
+                <select>
+                    <option value="0">1st Level</option>
+                    <option value="1">2nd Level</option>
+                    <option value="2">3rd Level</option>
+                </select>
+            </div>
+            <button class="button" id="btnColumnUpdate">
+                Update</button>
+        </fieldset>
+    </div>
+    <div id="columnChartZone">
+        <div id="columnChart">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    //Funding Agency
+    //IDA
+    //USAID
+    //ADB
+    //IBRD
+    //IDB
+
+    //Funding Source
+    //WB
+    //USA
+    //Japan
+    //UK
+    //UEA
+
+    //Funding Type
+    //Loan
+    //Grant
+    //GOP
+
+    //Global Variable For Chart
+    var columnChart;
+
+    $(document).ready(function () {
+
+        //define the column chart by Highcharts
+        columnChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'columnChart',
+                type: 'column'
+            },
+            title: {
+                text: 'Funding Agency Chart'
+            },
+            subtitle: {
+                text: 'Source: UNDP Bangladesh'
+            },
+            xAxis: {
+                categories: [
+                    'IDA',
+                    'USAID',
+                    'ADB',
+                    'IBRD',
+                    'IDB'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Amount (TK)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} tk</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Committed',
+                data: [500050, 120000, 650000, 985000, 54000]
+
+            }]
+
+        });
+
+        $('#btnColumnUpdate').click(function () {
+
+            $('#columnChart').remove();
+
+            $("#columnChartZone").append("<div id='columnChart'></div>");
+
+            return false;
+
+        });
+
+    });
+
+</script>

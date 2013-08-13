@@ -1,0 +1,413 @@
+﻿@{
+    ViewBag.Title = "Add Category/Series Charts";
+}
+<div id="barChartsPage">
+    <div>
+        <h2>
+            Column Chart:</h2>
+        <button class="button" id="btnColumnAddSeries">
+            Add Series</button>
+        <button class="button" id="btnColumnAddCategory">
+            Add Category</button>
+    </div>
+    <div id="columnChart">
+    </div>
+    <hr />
+    <div>
+        <h2>
+            Bar Chart:</h2>
+        <button class="button" id="btnBarAddSeries">
+            Add Series</button>
+        <button class="button" id="btnBarAddCategory">
+            Add Category</button>
+    </div>
+    <div id="barChart">
+    </div>
+</div>
+<script type="text/javascript">
+
+    //Global Variable For Chart
+    var columnChart;
+    var barChart;
+
+    $(document).ready(function () {
+
+        //        $('#columnChart').highcharts({
+
+        //            chart: {
+        //                type: 'column'
+        //            },
+        //            title: {
+        //                text: 'Monthly Average Rainfall'
+        //            },
+        //            subtitle: {
+        //                text: 'Source: WorldClimate.com'
+        //            },
+        //            xAxis: {
+        //                categories: [
+        //                    'Jan',
+        //                    'Feb',
+        //                    'Mar',
+        //                    'Apr',
+        //                    'May',
+        //                    'Jun',
+        //                    'Jul',
+        //                    'Aug',
+        //                    'Sep',
+        //                    'Oct',
+        //                    'Nov',
+        //                    'Dec'
+        //                ]
+        //            },
+        //            yAxis: {
+        //                min: 0,
+        //                title: {
+        //                    text: 'Rainfall (mm)'
+        //                }
+        //            },
+        //            tooltip: {
+        //                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        //                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        //                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        //                footerFormat: '</table>',
+        //                shared: true,
+        //                useHTML: true
+        //            },
+        //            plotOptions: {
+        //                column: {
+        //                    pointPadding: 0.2,
+        //                    borderWidth: 0
+        //                }
+        //            },
+        //            series: [{
+        //                name: 'Tokyo',
+        //                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        //            }, {
+        //                name: 'New York',
+        //                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        //            }, {
+        //                name: 'London',
+        //                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        //            }, {
+        //                name: 'Berlin',
+        //                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+        //            }]
+
+        //        });
+
+        //        //define the column chart options
+        //        var columnChartOptions = {
+
+        //            chart: {
+        //                type: 'column'
+        //            },
+        //            title: {
+        //                text: 'Monthly Average Rainfall'
+        //            },
+        //            subtitle: {
+        //                text: 'Source: WorldClimate.com'
+        //            },
+        //            xAxis: {
+        //                categories: [
+        //                    'Jan',
+        //                    'Feb',
+        //                    'Mar',
+        //                    'Apr',
+        //                    'May',
+        //                    'Jun',
+        //                    'Jul',
+        //                    'Aug',
+        //                    'Sep',
+        //                    'Oct',
+        //                    'Nov',
+        //                    'Dec'
+        //                ]
+        //            },
+        //            yAxis: {
+        //                min: 0,
+        //                title: {
+        //                    text: 'Rainfall (mm)'
+        //                }
+        //            },
+        //            tooltip: {
+        //                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        //                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        //                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        //                footerFormat: '</table>',
+        //                shared: true,
+        //                useHTML: true
+        //            },
+        //            plotOptions: {
+        //                column: {
+        //                    pointPadding: 0.2,
+        //                    borderWidth: 0
+        //                }
+        //            },
+        //            series: [{
+        //                name: 'Tokyo',
+        //                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+        //            }, {
+        //                name: 'New York',
+        //                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+        //            }, {
+        //                name: 'London',
+        //                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+        //            }, {
+        //                name: 'Berlin',
+        //                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+        //            }]
+
+        //        };
+
+        //        //create the column chart
+        //        columnChart = new Highcharts.Chart(columnChartOptions);
+        //        columnChart.render();
+
+        //define the column chart by Highcharts
+        columnChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'columnChart',
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Average Rainfall'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Rainfall (mm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+            }, {
+                name: 'New York',
+                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+            }, {
+                name: 'London',
+                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+            }, {
+                name: 'Berlin',
+                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+            }]
+
+        });
+
+        //        $('#barChart').highcharts({
+
+        //            chart: {
+        //                type: 'bar'
+        //            },
+        //            title: {
+        //                text: 'Historic World Population by Region'
+        //            },
+        //            subtitle: {
+        //                text: 'Source: Wikipedia.org'
+        //            },
+        //            xAxis: {
+        //                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+        //                title: {
+        //                    text: null
+        //                }
+        //            },
+        //            yAxis: {
+        //                min: 0,
+        //                title: {
+        //                    text: 'Population (millions)',
+        //                    align: 'high'
+        //                },
+        //                labels: {
+        //                    overflow: 'justify'
+        //                }
+        //            },
+        //            tooltip: {
+        //                valueSuffix: ' millions'
+        //            },
+        //            plotOptions: {
+        //                bar: {
+        //                    dataLabels: {
+        //                        enabled: true
+        //                    }
+        //                }
+        //            },
+        //            legend: {
+        //                layout: 'vertical',
+        //                align: 'right',
+        //                verticalAlign: 'top',
+        //                x: -40,
+        //                y: 100,
+        //                floating: true,
+        //                borderWidth: 1,
+        //                backgroundColor: '#FFFFFF',
+        //                shadow: true
+        //            },
+        //            credits: {
+        //                enabled: false
+        //            },
+        //            series: [{
+        //                name: 'Year 1800',
+        //                data: [107, 31, 635, 203, 2]
+        //            }, {
+        //                name: 'Year 1900',
+        //                data: [133, 156, 947, 408, 6]
+        //            }, {
+        //                name: 'Year 2008',
+        //                data: [973, 914, 4054, 732, 34]
+        //            }]
+
+        //        });
+
+        //define the column chart by Highcharts
+        barChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'barChart',
+                type: 'bar'
+            },
+            title: {
+                text: 'Historic World Population by Region'
+            },
+            subtitle: {
+                text: 'Source: Wikipedia.org'
+            },
+            xAxis: {
+                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Population (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Year 1800',
+                data: [107, 31, 635, 203, 2]
+            }, {
+                name: 'Year 1900',
+                data: [133, 156, 947, 408, 6]
+            }, {
+                name: 'Year 2008',
+                data: [973, 914, 4054, 732, 34]
+            }]
+
+        });
+
+        $('#btnColumnAddSeries').click(function () {
+
+            columnChart.addSeries({
+                name: 'Dhaka',
+                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+            });
+
+            return false;
+
+        });
+
+        $('#btnColumnAddCategory').click(function () {
+
+            columnChart.xAxis[0].setCategories(['Bangla']);
+
+            return false;
+
+        });
+
+        $('#btnBarAddSeries').click(function () {
+
+            barChart.addSeries({
+                name: 'Year 2021',
+                data: [760, 114, 405, 332, 34]
+            });
+
+            return false;
+
+        });
+
+        $('#btnBarAddCategory').click(function () {
+
+            barChart.xAxis[0].setCategories(['Bangladesh']);
+
+            return false;
+
+        });
+
+    });
+
+</script>
