@@ -1,0 +1,254 @@
+﻿@{
+    ViewBag.Title = "Final Charts";
+}
+<div id="chartsPage">
+    <div id="chartFilterZone">
+        <fieldset>
+            <legend>Filter:</legend>
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+                <label for="ddlCategory">
+                    Category:</label>
+                <select id="ddlCategory">
+                    <option value="0">-- Select One --</option>
+                    <option value="1">Funding Source</option>
+                    <option value="2">Funding Agency</option>
+                    <option value="3">Funding Type</option>
+                    <option value="4">Fiscal Year</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="ckbCommitted">
+                    Values:</label>
+                <input type="checkbox" checked="checked" name="ckbCommitted" id="ckbCommitted" value="1" /><label
+                    for="ckbCommitted">Committed</label><input type="checkbox" name="ckbDisbursed" id="ckbDisbursed"
+                        value="2" /><label for="ckbDisbursed">Disbursed</label><input type="checkbox" name="ckbExpended"
+                            id="ckbExpended" value="3" /><label for="ckbExpended">Expended</label>
+            </div>
+            <button class="button" id="btnDashBoardHighChartUpdate">
+                Update</button>
+        </fieldset>
+    </div>
+    <div id="chartDisplayZone">
+        <fieldset>
+            <legend>Charts:</legend>
+            <div id="dashBoardHighChartZone">
+                <div id="dashBoardHighChart">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript">
+
+    //Global Variable For Chart
+    var columnChart;
+
+    function GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series) {
+
+        //define the column chart by Highcharts
+        columnChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'dashBoardHighChart',
+                type: 'column',
+                height: 300
+            },
+            title: {
+                text: titleText //'Stacked column chart'
+            },
+            xAxis: {
+                categories: xAxisCategories //['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yAxisTitleText //'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: series
+            //            series: [{
+            //                name: 'John',
+            //                data: [5, 3, 4, 7, 2]
+            //            }, {
+            //                name: 'Jane',
+            //                data: [2, 2, 3, 2, 1]
+            //            }, {
+            //                name: 'Joe',
+            //                data: [3, 4, 4, 2, 5]
+            //            }]
+        });
+
+    }
+
+    $(document).ready(function () {
+
+        //define the column chart by Highcharts
+        columnChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'dashBoardHighChart',
+                type: 'column',
+                height: 300
+            },
+            title: {
+                text: 'Funding Agency Chart'
+            },
+            subtitle: {
+                text: 'Source: UNDP Bangladesh'
+            },
+            xAxis: {
+                categories: [
+                    'IDA',
+                    'USAID',
+                    'ADB',
+                    'IBRD',
+                    'IDB'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Amount (TK)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} tk</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Committed',
+                data: [500050, 120000, 650000, 985000, 54000]
+
+            }]
+
+        });
+
+        $('#btnDashBoardHighChartUpdate').click(function () {
+
+            //            $('#dashBoardHighChart').remove();
+
+            //            $("#dashBoardHighChartZone").append("<div id='dashBoardHighChart'></div>");
+
+            
+
+            var categoryValue = $("#ddlCategory option:selected").val();
+            var categoryText = $("#ddlCategory option:selected").text();
+
+            var viewUrl;
+            console.log(categoryValue);
+            if (categoryValue == 1) {
+                console.log(categoryValue);
+                viewUrl = "/Charts/FundSource";
+            }
+            else if (categoryValue == 2) {
+                console.log(categoryValue);
+                viewUrl = "/Charts/FundAgency";
+            }
+            else if (categoryValue == 3) {
+                console.log(categoryValue);
+                viewUrl = "/Charts/FundType";
+            }
+            else if (categoryValue == 4) {
+                console.log(categoryValue);
+                viewUrl = "/Charts/FiscalYear";
+            }
+
+            if (categoryValue == 0) {
+                console.log("Please Select One");
+            }
+            else {
+
+                $("#dashBoardHighChartZone").html('');
+                var displayDiv = $('#dashBoardHighChartZone');
+
+                $.get(viewUrl, function (data) {
+                    console.log(data);
+                    displayDiv.html(data);
+                });
+            }
+            //            $.ajax({
+            //                url: "/Charts/ServerBarChartsData",
+            //                type: 'GET',
+            //                dataType: 'json',
+            //                contentType: 'application/json; charset=utf-8',
+            //                success: function (data) {
+            //                    //console.log(data);
+            //                    //alert(data);
+
+            //                    var titleText = data.TitleText;
+            //                    var xAxisCategories = data.XAxisCategories;
+            //                    var yAxisTitleText = data.YAxisTitleText;
+            //                    var series = [];
+
+            //                    for (var index in data.Series) {
+            //                        series.push({
+            //                            name: data.Series[index].SeriesName,
+            //                            data: data.Series[index].SeriesDatas
+            //                        })
+            //                        //console.log(data.Series[serie].SeriesName);
+            //                        //console.log(data.Series[serie].SeriesDatas);
+            //                    }
+
+            //                    //GenerateColumnChart();
+            //                    GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series);
+
+            //                },
+            //                error: function (objAjaxRequest, strError) {
+            //                    var respText = objAjaxRequest.responseText;
+            //                    console.log(respText);
+            //                    //alert(respText);
+            //                }
+
+            //            });
+
+            return false;
+
+        });
+
+    });
+
+</script>

@@ -64,6 +64,78 @@
     //Global Variable For Chart
     var columnChart;
 
+    function GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series) {
+
+        //define the column chart by Highcharts
+        columnChart = new Highcharts.Chart({
+
+            chart: {
+                renderTo: 'columnChart',
+                type: 'column',
+                width: 400,
+                height: 200
+            },
+            title: {
+                text: titleText //'Stacked column chart'
+            },
+            xAxis: {
+                categories: xAxisCategories //['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yAxisTitleText //'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -70,
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: series
+            //            series: [{
+            //                name: 'John',
+            //                data: [5, 3, 4, 7, 2]
+            //            }, {
+            //                name: 'Jane',
+            //                data: [2, 2, 3, 2, 1]
+            //            }, {
+            //                name: 'Joe',
+            //                data: [3, 4, 4, 2, 5]
+            //            }]
+        });
+
+    }
+
     $(document).ready(function () {
 
         //define the column chart by Highcharts
@@ -71,7 +143,9 @@
 
             chart: {
                 renderTo: 'columnChart',
-                type: 'column'
+                type: 'column',
+                width: 400,
+                height: 200
             },
             title: {
                 text: 'Funding Agency Chart'
@@ -121,6 +195,41 @@
             $('#columnChart').remove();
 
             $("#columnChartZone").append("<div id='columnChart'></div>");
+
+            $.ajax({
+                url: "/Charts/ServerBarChartsData",
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    //console.log(data);
+                    //alert(data);
+
+                    var titleText = data.TitleText;
+                    var xAxisCategories = data.XAxisCategories;
+                    var yAxisTitleText = data.YAxisTitleText;
+                    var series = [];
+
+                    for (var index in data.Series) {
+                        series.push({
+                            name: data.Series[index].SeriesName,
+                            data: data.Series[index].SeriesDatas
+                        })
+                        //console.log(data.Series[serie].SeriesName);
+                        //console.log(data.Series[serie].SeriesDatas);
+                    }
+
+                    //GenerateColumnChart();
+                    GenerateColumnChart(titleText, xAxisCategories, yAxisTitleText, series);
+
+                },
+                error: function (objAjaxRequest, strError) {
+                    var respText = objAjaxRequest.responseText;
+                    console.log(respText);
+                    //alert(respText);
+                }
+
+            });
 
             return false;
 

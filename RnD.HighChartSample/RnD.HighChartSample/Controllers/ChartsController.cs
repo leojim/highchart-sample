@@ -182,5 +182,35 @@ namespace RnD.HighChartSample.Controllers
         {
             return View();
         }
+
+        //FinalChartsCharts
+        public ActionResult FinalCharts()
+        {
+            return View();
+        }
+
+        //FundSource
+        public ActionResult FundSource()
+        {
+            return PartialView("_FundSource");
+        }
+
+        //FundAgency
+        public ActionResult FundAgency()
+        {
+            return PartialView("_FundAgency");
+        }
+
+        //FundType
+        public ActionResult FundType()
+        {
+            return PartialView("_FundType");
+        }
+
+        //FiscalYear
+        public ActionResult FiscalYear()
+        {
+            return PartialView("_FiscalYear");
+        }
     }
 }

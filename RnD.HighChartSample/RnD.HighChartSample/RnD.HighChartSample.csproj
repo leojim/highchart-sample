@@ -219,6 +219,21 @@
   <ItemGroup>
     <Content Include="Views\Charts\UpdateCharts.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Charts\FinalCharts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Charts\_FundSource.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Charts\_FundAgency.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Charts\_FundType.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Charts\_FiscalYear.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
